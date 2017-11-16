@@ -13,8 +13,7 @@ const gulp = require('gulp'),
   imageminPngquant = require('imagemin-pngquant'),
   imageminJpegRecompress = require('imagemin-jpeg-recompress');
 
-const postcss = require('gulp-postcss'),
-  cssnext = require('postcss-cssnext');
+const postcss = require('gulp-postcss');
 
 const DIST_PATH = 'public/dist',
   IMAGES_PATH = 'public/images/**/*.{png,jpeg,jpg,svg,gif}',
@@ -46,28 +45,37 @@ gulp.task('images', () => {
 
 gulp.task('styles', () => {
   const plugins = [
-    cssnext({
-      browsers: BROWSERS,
-      // TODO: Waiting for update because options not working.
-      compress: false,
-      import: false,
-      warnForDuplicates: false
-    }),
-    // TODO: Delete if cssnext's options work or add more features.
+    // NOTE: Choose your best combination.
+    // 1. transpile
+    // SASS like
     require('postcss-import'),
-    require('postcss-url'),
-    require('postcss-browser-reporter'),
-    require('postcss-reporter'),
-    require('postcss-custom-properties'),
-    require('postcss-custom-media'),
+    require('postcss-simple-vars'),
     require('postcss-nested'),
     require('postcss-mixins'),
+    // Optional
+    require('postcss-url'),
+    require('postcss-custom-properties'),
+    require('postcss-custom-media'),
+    require('postcss-apply'),
     require('postcss-color-rgba-fallback'),
     require('pixrem'),
     require('postcss-size'),
     require('postcss-selector-matches'),
+    require('postcss-browser-reporter'),
+    // 2. format
+    require('stylefmt'),
+    require('stylelint'),
+    // 3. attache
+    require('autoprefixer')({ browsers: BROWSERS }),
     require('postcss-normalize')({ browsers: BROWSERS, forceImport: true }),
-    require('cssnano')
+    // 4. minify
+    require('postcss-sorting'),
+    require('cssnano'),
+    // handle postcss errors
+    require('postcss-reporter')({
+      clearMessages: true,
+      throwError: true
+    })
   ];
   return gulp
     .src('public/styles/styles.css')

@@ -1,10 +1,11 @@
 {
-  "name": "boilerplate-gulp-sass",
+  "name": "boilerplate-gulp-postcss",
   "version": "0.0.0",
-  "description": "Boilerplate of SASS with Gulp.",
+  "description": "Boilerplate of PostCSS with Gulp.",
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
+    "autoprefixer": "^7.1.6",
     "babel-core": "^6.26.0",
     "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
@@ -27,9 +28,9 @@
     "node-sass-package-importer": "^5.0.0-alpha.17",
     "pixrem": "^4.0.1",
     "postcss": "^6.0.14",
+    "postcss-apply": "^0.8.0",
     "postcss-browser-reporter": "^0.5.0",
     "postcss-color-rgba-fallback": "^3.0.0",
-    "postcss-cssnext": "^3.0.2",
     "postcss-custom-media": "^6.0.0",
     "postcss-custom-properties": "^6.2.0",
     "postcss-import": "^11.0.0",
@@ -38,9 +39,14 @@
     "postcss-normalize": "^4.0.0",
     "postcss-reporter": "^5.0.0",
     "postcss-selector-matches": "^3.0.1",
+    "postcss-simple-vars": "^4.1.0",
     "postcss-size": "^2.0.0",
+    "postcss-sorting": "^3.1.0",
     "postcss-url": "^7.1.2",
-    "run-sequence": "^2.2.0"
+    "run-sequence": "^2.2.0",
+    "stylefmt": "^6.0.0",
+    "stylelint": "^8.2.0",
+    "stylelint-config-standard": "^17.0.0"
   },
   "scripts": {
     "start": "gulp"
